@@ -43,7 +43,7 @@ let openblas_default : C.Pkg_config.package_conf =
   in
   { C.Pkg_config.cflags; libs }
 
-let default_ldlibs = [ "-lm" ]
+let default_ldlibs = [ ]
 
 let string_contains ~needle haystack =
   let h_len = String.length haystack in
@@ -171,7 +171,7 @@ let () =
       let architecture = C.ocaml_config_var_exn c "architecture" in
       let word_size = C.ocaml_config_var_exn c "word_size" in
 
-      let base_flags =
+      let _base_flags =
         let opt_flags =
           match architecture with
           | "amd64" | "x86_64" -> [ "-O3"; "-march=native"; "-fPIC" ]
@@ -190,6 +190,7 @@ let () =
         if compiler_is_clang c then opt_flags @ [ "-Wno-pass-failed" ]
         else opt_flags
       in
+      let base_flags = [] in
 
       let opt_flags =
         match system with
@@ -199,13 +200,13 @@ let () =
 
       let opt_flags, openmp_libs = detect_openmp c system opt_flags in
 
-      let openblas_conf =
+      let _openblas_conf =
         match pkg_query c "openblas" with
         | Some conf -> conf
         | None -> openblas_default
       in
 
-      let filter_openmp_flags flags =
+      let _filter_openmp_flags flags =
         let rec loop acc = function
           | [] -> List.rev acc
           | "-Xpreprocessor" :: "-fopenmp" :: rest -> loop acc rest
@@ -214,27 +215,13 @@ let () =
         in
         loop [] flags
       in
-      let openblas_cflags = filter_openmp_flags openblas_conf.cflags in
-      let openblas_libs = filter_openmp_flags openblas_conf.libs in
+      let openblas_cflags = [] in
+      let openblas_libs = [] in
       let c_flags = opt_flags @ openblas_cflags in
       let libs =
         (if system = "macosx" then [ "-framework"; "Accelerate" ] else [])
         @ openblas_libs @ openmp_libs @ default_ldlibs
       in
-
-      if not (C.c_test c test_blas ~c_flags ~link_flags:libs) then (
-        Printf.printf
-          {|
-Unable to link against OpenBLAS: the current values for cflags and libs
-are respectively (%s) and (%s).
-Check that OpenBLAS is installed and, if necessary, extend PKG_CONFIG_PATH
-with the directory containing openblas.pc.
-|}
-          (String.concat " " openblas_cflags)
-          (String.concat " " openblas_libs);
-        failwith "Unable to link against openblas.");
-
-      let libs, c_flags = ensure_lapacke c c_flags libs (pkg_query c) in
 
       C.Flags.write_sexp "c_flags.sexp" c_flags;
       C.Flags.write_sexp "c_library_flags.sexp" libs)

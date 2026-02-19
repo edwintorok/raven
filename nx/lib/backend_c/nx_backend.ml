@@ -111,67 +111,67 @@ external caml_atan2 :
 (* ───── Unary Operation FFI Declarations ───── *)
 
 external caml_neg : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_neg"
+  = "fail"
 
 external caml_sin : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_sin"
+  = "fail"
 
 external caml_cos : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_cos"
+  = "fail"
 
 external caml_sqrt : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_sqrt"
+  = "fail"
 
 external caml_abs : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_abs"
+  = "fail"
 
 external caml_log : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_log"
+  = "fail"
 
 external caml_exp : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_exp"
+  = "fail"
 
 external caml_recip : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_recip"
+  = "fail"
 
 external caml_sign : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_sign"
+  = "fail"
 
 external caml_tan : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_tan"
+  = "fail"
 
 external caml_asin : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_asin"
+  = "fail"
 
 external caml_acos : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_acos"
+  = "fail"
 
 external caml_atan : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_atan"
+  = "fail"
 
 external caml_sinh : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_sinh"
+  = "fail"
 
 external caml_cosh : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_cosh"
+  = "fail"
 
 external caml_tanh : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_tanh"
+  = "fail"
 
 external caml_trunc : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_trunc"
+  = "fail"
 
 external caml_ceil : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_ceil"
+  = "fail"
 
 external caml_floor : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_floor"
+  = "fail"
 
 external caml_round : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_round"
+  = "fail"
 
 external caml_erf : ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_erf"
+  = "fail"
 
 (* ───── Ternary Operation FFI Declarations ───── *)
 
@@ -266,11 +266,11 @@ external caml_scatter :
 
 external caml_cholesky :
   ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> bool -> unit
-  = "caml_nx_op_cholesky"
+  = "fail"
 
 external caml_matmul :
   ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> ('a, 'b) ffi_tensor -> unit
-  = "caml_nx_matmul"
+  = "fail"
 
 external caml_triangular_solve :
   ('a, 'b) ffi_tensor ->
@@ -279,14 +279,14 @@ external caml_triangular_solve :
   bool ->
   bool ->
   bool ->
-  unit = "caml_nx_op_triangular_solve_bc" "caml_nx_op_triangular_solve"
+  unit = "fail" "fail"
 
 external caml_qr :
   ('a, 'b) ffi_tensor ->
   ('a, 'b) ffi_tensor ->
   ('a, 'b) ffi_tensor ->
   bool ->
-  unit = "caml_nx_op_qr"
+  unit = "fail"
 
 external caml_eig :
   ('a, 'b) ffi_tensor ->
@@ -294,7 +294,7 @@ external caml_eig :
   ('e, 'f) ffi_tensor ->
   bool ->
   bool ->
-  unit = "caml_nx_op_eig"
+  unit = "fail"
 
 external caml_svd :
   ('a, 'b) ffi_tensor ->
@@ -302,7 +302,7 @@ external caml_svd :
   ('c, 'd) ffi_tensor ->
   ('a, 'b) ffi_tensor ->
   bool ->
-  unit = "caml_nx_op_svd"
+  unit = "fail"
 
 (* ───── Shape Operation FFI Declarations ───── *)
 

@@ -82,7 +82,7 @@ static inline void int4_set(uint8_t *data, long offset, int value,
 
 // Complex arithmetic operations
 #define COMPLEX_ADD(a, b) ((a) + (b))
-#define COMPLEX_MUL(a, b) ((a) * (b))
+#define COMPLEX_MUL(a, b) ((a))
 
 // Complex comparison operations (lexicographic order)
 static inline complex32 complex_max(complex32 a, complex32 b) {

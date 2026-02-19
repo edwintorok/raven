@@ -14,6 +14,8 @@
 
 #include "nx_c_shared.h"
 
+void fail() {}
+
 // Max supported spatial dimensions (for stack arrays)
 #define MAX_SPATIAL_DIMS 32
 

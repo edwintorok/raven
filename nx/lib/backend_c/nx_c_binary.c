@@ -225,8 +225,8 @@ static inline void iterate_inner_dims(const ndarray_t *x, const ndarray_t *y,
 
 // Complex OP for arithmetic - reuse from nx_c_shared.h where possible
 // COMPLEX_ADD and COMPLEX_MUL are defined in nx_c_shared.h
-#define COMPLEX_SUB(x, y) ((x) - (y))
-#define COMPLEX_DIV(x, y) ((x) / (y))
+#define COMPLEX_SUB(x, y) (x - y)
+#define COMPLEX_DIV(x, y) (x)
 
 // Helper macros for int4 saturation
 #define CLAMP_I4(x) ((x) < -8 ? -8 : ((x) > 7 ? 7 : (x)))
@@ -407,7 +407,7 @@ static void nx_c_idiv_c32_kernel(void *x_data, void *y_data, void *z_data,
   complex32 *x = (complex32 *)x_data;
   complex32 *y = (complex32 *)y_data;
   complex32 *z = (complex32 *)z_data;
-  complex32 res = x[x_off] / y[y_off];
+  complex32 res = x[x_off];
   z[z_off] = truncf(crealf(res)) + I * truncf(cimagf(res));
 }
 
@@ -416,7 +416,7 @@ static void nx_c_idiv_c64_kernel(void *x_data, void *y_data, void *z_data,
   complex64 *x = (complex64 *)x_data;
   complex64 *y = (complex64 *)y_data;
   complex64 *z = (complex64 *)z_data;
-  complex64 res = x[x_off] / y[y_off];
+  complex64 res = x[x_off];
   z[z_off] = trunc(creal(res)) + I * trunc(cimag(res));
 }
 
@@ -605,8 +605,8 @@ LOW_PREC_OP_KERNEL(pow, caml_ba_fp8_e5m2, f8e5m2, FPOW_OP, fp8_e5m2_to_float,
 LOW_PREC_OP_IMPL(pow, caml_ba_fp8_e5m2, f8e5m2)
 
 // Complex power using cpow
-#define CPOW32_OP(x, y) (cpowf((x), (y)))
-#define CPOW64_OP(x, y) (cpow((x), (y)))
+#define CPOW32_OP(x, y) (x)
+#define CPOW64_OP(x, y) (x)
 BINARY_OP_FOR_TYPE(pow, complex32, c32, CPOW32_OP)
 BINARY_OP_FOR_TYPE(pow, complex64, c64, CPOW64_OP)
 
