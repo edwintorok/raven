@@ -96,6 +96,14 @@ module Safe = struct
     | Failure msg -> Error (Other msg)
     | ex -> Error (Other (Printexc.to_string ex))
 
+  module Nx_npy = struct
+    let load_npy _ = failwith "not implemented"
+    let load_npz _ = failwith "not implemented"
+    let load_npz_member ~name _ = failwith "not implemented"
+    let save_npy ~overwrite _ _ = failwith "not implemented"
+    let save_npz ~overwrite _ _ = failwith "not implemented"
+  end
+
   let load_npy path = Nx_npy.load_npy path
 
   let save_npy ?(overwrite = true) path arr =

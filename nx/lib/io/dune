@@ -7,8 +7,6 @@
   nx_core
   safetensors
   unix
-  zip
-  npy
   stb_image
   stb_image_write
   xdg))

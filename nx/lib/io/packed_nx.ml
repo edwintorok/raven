@@ -15,12 +15,9 @@ let convert_result_with_error : type a b.
       let source_ba_kind = Nx_core.Dtype.to_buffer_kind source_dtype in
       let target_ba_kind = Nx_core.Dtype.to_buffer_kind target_dtype in
       (* Try Npy.Eq.Kind first for standard types *)
-      match Npy.Eq.Kind.( === ) source_ba_kind target_ba_kind with
-      | Some Npy.Eq.W -> Ok nx
-      | None -> (
           match Nx_core.Dtype.equal_witness source_dtype target_dtype with
           | Some Type.Equal -> Ok (nx : (a, b) Nx.t)
-          | None -> Error Unsupported_dtype))
+          | None -> Error Unsupported_dtype)
 
 let as_float16 packed = convert_result_with_error Nx.float16 packed
 let as_bfloat16 packed = convert_result_with_error Nx.bfloat16 packed
