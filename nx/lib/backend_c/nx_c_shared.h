@@ -374,7 +374,7 @@ static inline ndarray_t extract_ndarray(value v_ffi_tensor) {
   int *shape = (int *)malloc(ndim * sizeof(int));
   int *strides = (int *)malloc(ndim * sizeof(int));
 
-  if (!shape || !strides) {
+  if ((!shape || !strides) && ndim > 0) {
     if (shape) free(shape);
     if (strides) free(strides);
     caml_failwith("extract_ndarray: allocation failed");
