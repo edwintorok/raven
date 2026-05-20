@@ -227,6 +227,7 @@ static value make_contiguous(value v_src, bool force_copy) {
       flags = (flags & ~CAML_BA_KIND_MASK) |
               CAML_BA_UINT8;  // Use byte array for packed
     }
+    flags &= ~CAML_BA_SUBARRAY;
     v_new_data = caml_ba_alloc(flags, 1, NULL, dims);
     v_new_shape = copy_int_array(Field(v_src, FFI_TENSOR_SHAPE));
     v_new_strides = caml_alloc(src.ndim, 0);
